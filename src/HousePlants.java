@@ -18,6 +18,29 @@ public class HousePlants extends Plants {
                        int run) {
         super();
     }
+    public HousePlants(String name, ArrayList<String> notes,
+                       LocalDate planted, LocalDate watering ) {
+        this.name = name;
+        this.planted = planted;
+        this.watering = watering;
+        this.notes = notes;
+
+
+
+    }
+
+    public HousePlants(String notes, LocalDate watering, LocalDate planted) {
+        this.notes = null;
+        this.watering = LocalDate.now();
+        this.planted = LocalDate.now();
+    }
+
+    public HousePlants(LocalDate planted, LocalDate watering, Runnable run, String notes) {
+        this.planted = LocalDate.now();
+        this.watering = LocalDate.now();
+        this.notes = null;
+        this.run = run;
+    }
 
     public String getWateringInfo() {
         return wateringInfo;
@@ -80,45 +103,16 @@ public class HousePlants extends Plants {
         this.notes = notes;
     }
 
-
-
-    public HousePlants(String name, ArrayList<String> notes,
-                       LocalDate planted, LocalDate watering ) {
-        this.name = name;
-        this.planted = planted;
-        this.watering = watering;
-        this.notes = notes;
-
-
-
-    }
-
-    public HousePlants(String notes, LocalDate watering, LocalDate planted) {
-        this.notes = null;
-        this.watering = LocalDate.now();
-        this.planted = LocalDate.now();
-    }
-
-    public HousePlants(LocalDate planted, LocalDate watering, Runnable run, String notes) {
-        this.planted = LocalDate.now();
-        this.watering = LocalDate.now();
-        this.notes = null;
-        this.run = run;
-    }
-
     @Override
     public String toString() {
         return "HousePlants{" +
-                ", name='" + name + '\t' +
+                "name='" + name + '\t' +
                 ", planted=" + planted +
                 ", watering=" + watering +
                 ", notes=" + notes +
+                ", run=" + run +
                 '}';
-    };
-
-
-
-
+    }
 }
 
 

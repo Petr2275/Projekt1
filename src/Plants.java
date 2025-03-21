@@ -1,8 +1,8 @@
 
-import java.io.BufferedReader;
+
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.io.FileReader;
+
 
 import java.time.LocalDate;
 import java.time.format.DateTimeParseException;
@@ -12,9 +12,11 @@ import java.util.Scanner;
 
 public class Plants {
 
-    List<Plants> plants = new ArrayList<>();
+    List<HousePlants> plants = new ArrayList<>();
 
-
+public void addPlant(HousePlants plant) {
+    plants.add(plant);
+}
 
     /*Plants plants = new plant();
     listOfPlants.add(plant);
@@ -23,37 +25,41 @@ public class Plants {
     List<Plants> copyOfList = new ArrayList<Plants>(listOfPlants);*/
 
 
-    public List<Plants> getPlants() {
+    public List<HousePlants> getPlants() {
         return new ArrayList<>(plants);
     }
 
-    public void setPlants(List<Plants> plants) {
+    public void setPlants(List<HousePlants> plants) {
         this.plants = plants;
     }
+
 
     public void readPlantsFromFile(String filename, String delimiter) throws PlantException {
 
         plants.clear();
         int lineNumber = 0;
-        try  {
-            Scanner scanner = new Scanner((new File("C:\\Users\\AVATAR\\IdeaProjects\\Projekt1\\PlantsList\\kvetiny.txt")));
+        try {
+            File fileName = new File("C:\\Users\\AVATAR\\IdeaProjects\\Projekt1\\PlantsList\\kvetiny.txt");
+            Scanner scanner = new Scanner(fileName);
+
             while (scanner.hasNextLine()) {
-                lineNumber = 0;
                 lineNumber++;
-                String line = scanner.nextLine();
-                System.out.println(line);
-                String[] parts = line.split(delimiter);
-                if (parts.length != 4) {
-                    throw new PlantException("Chybný počet položek na řádku " + lineNumber);
-                }
+                String oneLine = scanner.nextLine();
+                System.out.println(oneLine);
+                String[] parts = oneLine.split(delimiter);
+                System.out.println(parts.length);
                 HousePlants newHousePlant = parsePlant(parts);
                 plants.add(newHousePlant);
 
 
             }
-            scanner.close();
+
+
+        //} catch (FileNotFoundException e) {
+            //throw new RuntimeException(e);
 
         } catch (FileNotFoundException e) {
+
             throw new PlantException("Nepodařilo se najít soubor " + filename + ": " + e.getLocalizedMessage());
 
 
@@ -76,11 +82,15 @@ public class Plants {
         LocalDate planted = LocalDate.parse(parts[4].trim());
         return new HousePlants(name, notes, planted, watering, run);
 
-
     }
 
-
 }
+
+
+
+
+
+
 
 
 
