@@ -6,7 +6,7 @@ import java.util.List;
 
 
 
-    /*public class PlantsNotes {
+    public class PlantsNotes {
 
         private static final List<String> notes = new ArrayList<>();
 
@@ -14,6 +14,7 @@ import java.util.List;
 
         public static void notes(String[] args) {
             Scanner scanner = new Scanner(System.in);
+
             while (true) {
 
                 System.out.println("1. Přidat poznámku");
@@ -46,5 +47,5 @@ import java.util.List;
             }
         }
 
-    }*/
+    }
 
