@@ -1,29 +1,29 @@
 import java.time.LocalDate;
-import java.util.ArrayList;
+
 
 
 public class Plant extends HousePlants {
     private String name;
     private LocalDate planted;
     private LocalDate watering;
-    private ArrayList<String> notes;
+    private String notes;
     private int frequencyOfWatering;
     private String wateringInfo;
     private LocalDate nextWatering;
 
 
-    //zmena Runable na int!!!
 
-    public Plant(String name, String notes,
+
+    /*public Plant(String name, String notes,
                  LocalDate planted, LocalDate watering,
                  int frequencyOfWatering) {
         super();
 
-    }
+    }*/
 
 
     public Plant(String name, LocalDate planted,
-                 LocalDate watering, ArrayList<String> notes, int frequencyOfWatering) {
+                 LocalDate watering, String notes,int  frequencyOfWatering) {
         this.name = name;
         this.planted = planted;
         this.watering = watering;
@@ -46,20 +46,9 @@ public class Plant extends HousePlants {
         this.planted = LocalDate.now();
         this.watering = LocalDate.now();
         this.notes = null;
-        this.frequencyOfWatering = frequencyOfWatering;
+        this.frequencyOfWatering = 7;
     }
 
-    /*public Plant(String name, ArrayList<String> notes, int frequencyOfWatering,
-                 LocalDate watering,LocalDate planted) {
-        this.name = name;
-        this.notes = notes;
-        this.frequencyOfWatering = frequencyOfWatering;
-        this.watering = watering;
-        this.planted = planted;
-
-
-
-    }*/
 
 
     public void doWatering(LocalDate watering) {
@@ -109,11 +98,11 @@ public class Plant extends HousePlants {
         this.frequencyOfWatering = frequencyOfWatering;
     }
 
-    public ArrayList<String> getNotes() {
+    public String getNotes() {
         return notes;
     }
 
-    public void setNotes(ArrayList<String> notes) {
+    public void setNotes(String notes) {
         this.notes = notes;
     }
 
@@ -131,11 +120,17 @@ public class Plant extends HousePlants {
         this.nextWatering = nextWatering;
     }
 
+
+
     @Override
     public String toString() {
-        return name + "\t" + notes + "\t" + frequencyOfWatering + "\t" + watering + "\t" + planted;
-
-
+        return "Plant{" +
+                "frequencyOfWatering=" + frequencyOfWatering +
+                ", notes='" + notes + '\'' +
+                ", watering=" + watering +
+                ", planted=" + planted +
+                ", name='" + name + '\'' +
+                '}';
     }
 }
 

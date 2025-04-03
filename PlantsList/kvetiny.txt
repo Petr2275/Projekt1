@@ -1,1 +1,1 @@
-null	null	0	null	nullnull	null	0	null	nullnull	null	0	null	nullLilie	[pekna]	5	2021-05-12	2021-04-15
+Fialka 1	Popis fialky - je fialová a hezká	3	2021-05-12	2021-01-01Vánoční hvězda bez poznámky		4	2021-05-10	2021-04-01Sukulent v koupelně	Nezalévá se	365	2011-03-01	2011-03-01Lilie Zlatohlavá	Pěkná	7	2021-05-12	2021-04-15

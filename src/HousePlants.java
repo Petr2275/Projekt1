@@ -15,7 +15,6 @@ public class HousePlants {
 
 
 
-
     /*List<Plant> plants = new ArrayList<>();
 
    
@@ -23,11 +22,12 @@ public class HousePlants {
     public List<Plant> getPlants() {
         return new ArrayList<>(plants);
     }
+    Plant plant = new Plant;
+        listOfHousePlants.add(plant);
 
 
-    Plants plants = new plant();
-    listOfPlants.add(plant);
-    listOfPlants.add(new plant("Lilie Zlatohlavá"));
+
+
 
     List<Plants> copyOfList = new ArrayList<Plants>(listOfPlants);
 
@@ -85,10 +85,10 @@ public class HousePlants {
     private Plant parseHousePlants(String[] parts) {
         String name = parts[0].trim();
         String notes = parts[1].trim();
-        int run = Integer.parseInt(parts[2]);
+        int frequencyOfWatering = Integer.parseInt(parts[2]);
         LocalDate watering = LocalDate.parse(parts[3].trim());
         LocalDate planted = LocalDate.parse(parts[4].trim());
-        return new Plant(name, notes, planted, watering, run);
+        return new Plant(name, planted, watering, notes, frequencyOfWatering);
 
     }
 
@@ -114,14 +114,16 @@ public class HousePlants {
         writer.print(plant.getPlanted());
 
     }
-    public static void addPlant(HousePlants housePlants) {
-        plants.add(housePlants);
+    public static void addPlant(HousePlants plant) {
+        plants.add(plant);
     }
 
     public List<HousePlants> getPlant() {
         return plants;
 
     }
+
+
 }
 
 
