@@ -1,5 +1,5 @@
 import java.time.LocalDate;
-
+import java.util.Comparator;
 
 
 public class Plant extends HousePlants {
@@ -14,12 +14,7 @@ public class Plant extends HousePlants {
 
 
 
-    /*public Plant(String name, String notes,
-                 LocalDate planted, LocalDate watering,
-                 int frequencyOfWatering) {
-        super();
 
-    }*/
 
 
     public Plant(String name, LocalDate planted,
@@ -49,6 +44,9 @@ public class Plant extends HousePlants {
         this.frequencyOfWatering = 7;
     }
 
+    public static void sort(Comparator<Plant> comparing) {
+    }
+
 
 
     public void doWatering(LocalDate watering) {
@@ -65,7 +63,7 @@ public class Plant extends HousePlants {
         this.nextWatering = nextWatering;
     }
 
-    public String getName() {
+    public  String getName() {
         return name;
     }
 
@@ -121,16 +119,15 @@ public class Plant extends HousePlants {
     }
 
 
-
     @Override
     public String toString() {
-        return "Plant{" +
-                "frequencyOfWatering=" + frequencyOfWatering +
-                ", notes='" + notes + '\'' +
-                ", watering=" + watering +
-                ", planted=" + planted +
-                ", name='" + name + '\'' +
-                '}';
+        return "Rostlina {" +
+                "Jméno = '" + name + '\'' +
+                ", Zasazená = " + planted +
+                ", Poslední zálivka = " + watering +
+                ", Notes = '" + notes + '\'' +
+                ", Frekvence zálivky = " + frequencyOfWatering +
+                 '}';
     }
 }
 
