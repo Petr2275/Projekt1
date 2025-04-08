@@ -27,7 +27,17 @@ public class HousePlants {
 
     }
 
+    public static void setPlants(List<HousePlants> plants) {
+        HousePlants.plants = plants;
+    }
 
+    public List<HousePlants> getCopyOfList() {
+        return copyOfList;
+    }
+
+    public void setCopyOfList(List<HousePlants> copyOfList) {
+        this.copyOfList = copyOfList;
+    }
 
     public void readPlantsFromFile(String filename, String delimiter) throws PlantException {
 
@@ -43,7 +53,7 @@ public class HousePlants {
                 String oneLine = scanner.nextLine();
                 System.out.println(oneLine);
                 String[] parts = oneLine.split(delimiter);
-                System.out.println(parts.length);
+                //System.out.println(parts.length);
                 Plant newPlant = parsePlants(parts);
                 plants.add(newPlant);
                 //plants.add(Plant.parsePlants(oneLine));
@@ -80,37 +90,34 @@ public class HousePlants {
 
 
     public static Plant parsePlants(String[] parts) {
-        //String[] parts = row.split(" : ");
         String name = parts[0].trim();
         String notes = parts[1].trim();
         int frequencyOfWatering = Integer.parseInt(parts[2]);
         LocalDate watering = LocalDate.parse(parts[3].trim());
         LocalDate planted = LocalDate.parse(parts[4].trim());
-        return new Plant(name, planted, watering, notes, frequencyOfWatering);
+        return new Plant(name, notes, frequencyOfWatering, watering, planted);
 
 
     }
-
     public void writePlantsToFile(String filename, String delimiter) throws PlantException, IOException {
 
         try (PrintWriter writer = new PrintWriter(new BufferedWriter(new FileWriter(filename)))) {
             for (HousePlants plant : plants) exportPlants((Plant) plant, writer, delimiter);
+
         } catch (IOException e) {
             throw new PlantException("Chyba při zápisu do souboru" + filename + ": " + e.getLocalizedMessage());
         }
     }
 
-    public void exportPlants(Plant plant, PrintWriter writer, String delimiter) {
 
-        writer.print(plant.getName());
-        writer.print(delimiter);
-        writer.print(plant.getNotes());
-        writer.print(delimiter);
-        writer.print(plant.getFrequencyOfWatering());
-        writer.print(delimiter);
-        writer.print(plant.getWatering());
-        writer.print(delimiter);
-        writer.print(plant.getPlanted());
+    public void exportPlants(Plant plant,PrintWriter writer,String delimiter) {
+        String output = plant.getName() + delimiter
+                + plant.getNotes() + delimiter
+                + plant.getFrequencyOfWatering() + delimiter
+                + plant.getWatering() + delimiter
+                + plant.getPlanted();
+        writer.println(output);
+
 
     }
 

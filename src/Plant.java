@@ -17,13 +17,16 @@ public class Plant extends HousePlants {
 
 
 
-    public Plant(String name, LocalDate planted,
-                 LocalDate watering, String notes,int  frequencyOfWatering) {
+    public Plant(String name, String notes,
+                 int  frequencyOfWatering,LocalDate watering ,LocalDate planted) {
         this.name = name;
-        this.planted = planted;
-        this.watering = watering;
         this.notes = notes;
         this.frequencyOfWatering = frequencyOfWatering;
+        this.watering = watering;
+        this.planted = planted;
+
+
+
 
 
 
@@ -118,16 +121,15 @@ public class Plant extends HousePlants {
         this.nextWatering = nextWatering;
     }
 
-
     @Override
     public String toString() {
-        return "Rostlina {" +
-                "Jméno = '" + name + '\'' +
-                ", Zasazená = " + planted +
-                ", Poslední zálivka = " + watering +
-                ", Notes = '" + notes + '\'' +
-                ", Frekvence zálivky = " + frequencyOfWatering +
-                 '}';
+        return "Plant" +
+                "name = '" + name + '\'' +
+                ", notes = '" + notes + '\'' +
+                " frequencyOfWatering = " + frequencyOfWatering +
+                ", watering = " + watering +
+                ", planted = " + planted
+                ;
     }
 }
 
