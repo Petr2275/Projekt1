@@ -1,33 +1,24 @@
 import java.time.LocalDate;
-import java.util.Comparator;
+import java.util.List;
 
 
-public class Plant extends HousePlants {
+public class Plant extends HousePlants implements Comparable<Plant>  {
     private String name;
     private LocalDate planted;
     private LocalDate watering;
     private String notes;
     private int frequencyOfWatering;
-    private String wateringInfo;
+    //private String wateringInfo;
     private LocalDate nextWatering;
 
 
-
-
-
-
-
     public Plant(String name, String notes,
-                 int  frequencyOfWatering,LocalDate watering ,LocalDate planted) {
+                 int frequencyOfWatering, LocalDate watering, LocalDate planted) {
         this.name = name;
         this.notes = notes;
         this.frequencyOfWatering = frequencyOfWatering;
         this.watering = watering;
         this.planted = planted;
-
-
-
-
 
 
     }
@@ -46,16 +37,16 @@ public class Plant extends HousePlants {
         this.notes = null;
         this.frequencyOfWatering = 7;
     }
-
-    public static void sort(Comparator<Plant> comparing) {
+    public Plant(String name, LocalDate watering, LocalDate nextWatering, String notes) {
+        this.name = name;
+        this.watering = watering;
+        this.nextWatering = nextWatering;
+        this.notes = null;
     }
 
-
-
-    public void doWatering(LocalDate watering) {
-        this.watering = LocalDate.now();
+    public static Plant getWatering(Plant t) {
+        return null;
     }
-
 
 
     public LocalDate getNextWatering() {
@@ -66,9 +57,10 @@ public class Plant extends HousePlants {
         this.nextWatering = nextWatering;
     }
 
-    public  String getName() {
+    public String getName() {
         return name;
     }
+
 
     public void setName(String name) {
         this.name = name;
@@ -107,30 +99,42 @@ public class Plant extends HousePlants {
         this.notes = notes;
     }
 
-
-
-    public String getWateringInfo() {
-        return wateringInfo;
+    public String getWateringInfo(List<Plant> plant) {
+        return "Název: " + name +
+                ", Datum poslední zálivky: " + watering +
+                ", Doporučené datum další zálivky: " + nextWatering +
+                "---" + notes;
+    }
+    public void doWateringNow(List<Plant> plant) {
+        watering = LocalDate.now();
+        nextWatering = watering.plusDays(3); // Příklad: další zalévání za 3 dny
     }
 
-    public void setWateringInfo(String wateringInfo, String name,
-                                LocalDate watering, LocalDate nextWatering) {
-        this.wateringInfo = wateringInfo;
-        this.name = name;
-        this.watering = watering;
-        this.nextWatering = nextWatering;
-    }
+
+
+
 
     @Override
     public String toString() {
-        return "Plant" +
-                "name = '" + name + '\'' +
+        return " Plant : " +
+                " name = '" + name + '\'' +
                 ", notes = '" + notes + '\'' +
-                " frequencyOfWatering = " + frequencyOfWatering +
+                ", frequencyOfWatering = " + frequencyOfWatering +
                 ", watering = " + watering +
-                ", planted = " + planted
+                ", planted = " + planted + "\n"
                 ;
     }
+
+    @Override
+    public int compareTo(Plant other) {
+        return this.name.compareTo(other.name);
+
+
+    }
+
+
+
 }
+
 
 

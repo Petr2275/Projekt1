@@ -14,7 +14,7 @@ public class PlantException  extends Exception {
         // ... další atributy
         long period;
         LocalDate watering;
-        long numberOfPeriod;
+        int frequencyOfWatering;
         LocalDate planted;
 
         public Request(long period, LocalDate watering, LocalDate planted) {
@@ -48,7 +48,7 @@ public class PlantException  extends Exception {
             this.planted = planted;
         }
 
-        public void setNumberOfPeriod(long period)
+        public void setFrequencyOfWatering(long period)
                 throws PlantException {
             if (period < 1) {
                 throw new PlantException(
@@ -60,8 +60,8 @@ public class PlantException  extends Exception {
 
         }
 
-        public long getNumberOfPeriod() {
-            return numberOfPeriod;
+        public long getFrequencyOfWatering() {
+            return frequencyOfWatering;
         }
 
         public void validateDate(LocalDate watering) throws PlantException{
@@ -72,7 +72,7 @@ public class PlantException  extends Exception {
             }
         }
 
-        public void date (String[] args) {
+        /*public void date (String[] args) {
             try {
                 LocalDate dateToCheck = LocalDate.of(2023, 1, 1);
                 validateDate(dateToCheck);
@@ -82,7 +82,7 @@ public class PlantException  extends Exception {
             }
 
 
-        }
+        }*/
 
     }
 

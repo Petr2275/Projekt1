@@ -7,37 +7,40 @@ import java.time.LocalDate;
 import java.time.format.DateTimeParseException;
 import java.util.*;
 
-public class HousePlants {
+public class HousePlants  {
 
-    static List<HousePlants> plants = new ArrayList<>();
+    static List<Plant> plants = new ArrayList<>();
 
-    List<HousePlants> copyOfList = new ArrayList<>();
+    List<Plant> copyOfList = new ArrayList<>();
 
-    public List<HousePlants> getPlants() {
+
+    public List<Plant> getPlant() {
         return new ArrayList<>(plants);
+
     }
 
 
-    public static void addPlant(Plant plant) {
+    public void addPlant(Plant plant) {
         plants.add(plant);
     }
 
-    public List<HousePlants> getPlant() {
+
+    public List<Plant> getPlants() {
         return new ArrayList<>(plants);
-
     }
 
-    public static void setPlants(List<HousePlants> plants) {
-        HousePlants.plants = plants;
+    public static void setPlants(List<Plant> plants) {
+        Plant.plants = plants;
     }
 
-    public List<HousePlants> getCopyOfList() {
+    public List<Plant> getCopyOfList() {
         return copyOfList;
     }
 
-    public void setCopyOfList(List<HousePlants> copyOfList) {
+    public void setCopyOfList(List<Plant> copyOfList) {
         this.copyOfList = copyOfList;
     }
+
 
     public void readPlantsFromFile(String filename, String delimiter) throws PlantException {
 
@@ -46,31 +49,56 @@ public class HousePlants {
         try  { Scanner scanner = new Scanner(
                 new BufferedReader(new FileReader("C:\\Users\\AVATAR\\IdeaProjects\\Projekt1\\PlantsList\\kvetiny.txt")));
 
-            //List<Plant> plants = new ArrayList<>();
 
             while (scanner.hasNextLine()) {
+
+
                 lineNumber++;
                 String oneLine = scanner.nextLine();
                 System.out.println(oneLine);
                 String[] parts = oneLine.split(delimiter);
-                //System.out.println(parts.length);
                 Plant newPlant = parsePlants(parts);
                 plants.add(newPlant);
-                //plants.add(Plant.parsePlants(oneLine));
-                /*System.out.println("Rostliny podle nazvu: ");
-                plants.sort(Comparator.comparing(Plant::getName));
-                plants.forEach(c -> System.out.println(c.getName()));
-                System.out.println("Rostliny podle data poslední zálivky: ");
-                plants.sort(Comparator.comparing(Plant::getName).thenComparing(Plant::getWatering));
-                plants.forEach(c -> System.out.println(c.getName() + " (" + c.getWatering() + "), "));
+                //Collections.sort(plants, comparator);
+                //System.out.println("\nInformace před zaléváním");
+                //plants.forEach(c -> System.out.print (c.getWateringInfo()+"), \n"));
+
+                 //Výpis informací před zaléváním
+                //System.out.println(plants.getFirst().getWateringInfo());
+
+                 //Zaléváme rostlinu
+                //plants.doWateringNow();
+
+                // Výpis informací po zalévání
+               // System.out.println(plants.getFirst().getWateringInfo());
 
 
-                //Comparator<Plant> name = Comparator. comparing(Plant::getName);*/
+
+                /*plants.sort(null);
+                System.out.print("\nVýchozí řazení rostlin podle nazvu : " + "\n" + plants + "\n");
+
+
+                System.out.println("\nRostliny podle data poslední zálivky: ");
+
+                plants.forEach(c -> System.out.print(c.getName()+" ("+c.getWatering()+"), \n"));
+                */
+                // Odebrání květiny
+                String kvetinaNaOdebrani = "Vánoční hvězda bez poznámky";
+                plants.remove(kvetinaNaOdebrani);
+
+                System.out.println("\nSeznam po odebrání:\n " + plants);
+
+
+
+
+
+
+
+
 
 
             }
             scanner.close();
-
 
         } catch (FileNotFoundException e) {
 
@@ -89,6 +117,8 @@ public class HousePlants {
     }
 
 
+
+
     public static Plant parsePlants(String[] parts) {
         String name = parts[0].trim();
         String notes = parts[1].trim();
@@ -102,7 +132,7 @@ public class HousePlants {
     public void writePlantsToFile(String filename, String delimiter) throws PlantException, IOException {
 
         try (PrintWriter writer = new PrintWriter(new BufferedWriter(new FileWriter(filename)))) {
-            for (HousePlants plant : plants) exportPlants((Plant) plant, writer, delimiter);
+            for (Plant plant : plants) exportPlants( plant, writer, delimiter);
 
         } catch (IOException e) {
             throw new PlantException("Chyba při zápisu do souboru" + filename + ": " + e.getLocalizedMessage());
@@ -121,6 +151,7 @@ public class HousePlants {
 
     }
 
+
     public  List<Plant> getPourNow(List<Plant> plants) {
         List<Plant> pourNow = new ArrayList<>();
         LocalDate toDay = LocalDate.now();
@@ -134,6 +165,8 @@ public class HousePlants {
 
         return pourNow;
     }
+
+
 
 
 }
