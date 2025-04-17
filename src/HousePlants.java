@@ -11,35 +11,37 @@ public class HousePlants  {
 
     static List<Plant> plants = new ArrayList<>();
 
-    List<Plant> copyOfList = new ArrayList<>();
+
 
 
     public List<Plant> getPlant() {
         return new ArrayList<>(plants);
 
     }
+    // Metoda pro získání rostliny ze seznamu na zadaném indexu
+
+   /* public Plant getPlantOnIndex(List<Plant> plants, int index) {
+        if (index >= 0 && index < plants.size()) {
+            return plants.get(index);
+        } else {
+            return null; // Vrátí null, pokud je index mimo rozsah
+        }
+    }*/
 
 
     public void addPlant(Plant plant) {
         plants.add(plant);
     }
-
-
-    public List<Plant> getPlants() {
-        return new ArrayList<>(plants);
+    public boolean remove(int index) {
+        plants.remove(index);
+        return false;
+    }
+    //kopirovani seznamu
+    public void replacePlant(List<Plant> newPlants) {
+        plants = new ArrayList<>(newPlants);
     }
 
-    public static void setPlants(List<Plant> plants) {
-        Plant.plants = plants;
-    }
 
-    public List<Plant> getCopyOfList() {
-        return copyOfList;
-    }
-
-    public void setCopyOfList(List<Plant> copyOfList) {
-        this.copyOfList = copyOfList;
-    }
 
 
     public void readPlantsFromFile(String filename, String delimiter) throws PlantException {
@@ -65,7 +67,7 @@ public class HousePlants  {
 
                  //Výpis informací před zaléváním
                 //System.out.println(plants.getFirst().getWateringInfo());
-
+                //System.out.println(plants.getWateringInfo());
                  //Zaléváme rostlinu
                 //plants.doWateringNow();
 
@@ -74,19 +76,14 @@ public class HousePlants  {
 
 
 
-                /*plants.sort(null);
+                plants.sort(null);
                 System.out.print("\nVýchozí řazení rostlin podle nazvu : " + "\n" + plants + "\n");
 
 
                 System.out.println("\nRostliny podle data poslední zálivky: ");
 
                 plants.forEach(c -> System.out.print(c.getName()+" ("+c.getWatering()+"), \n"));
-                */
-                // Odebrání květiny
-                String kvetinaNaOdebrani = "Vánoční hvězda bez poznámky";
-                plants.remove(kvetinaNaOdebrani);
 
-                System.out.println("\nSeznam po odebrání:\n " + plants);
 
 
 
@@ -165,7 +162,6 @@ public class HousePlants  {
 
         return pourNow;
     }
-
 
 
 

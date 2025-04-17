@@ -8,7 +8,6 @@ public class Plant extends HousePlants implements Comparable<Plant>  {
     private LocalDate watering;
     private String notes;
     private int frequencyOfWatering;
-    //private String wateringInfo;
     private LocalDate nextWatering;
 
 
