@@ -72,17 +72,7 @@ public class PlantException  extends Exception {
             }
         }
 
-        /*public void date (String[] args) {
-            try {
-                LocalDate dateToCheck = LocalDate.of(2023, 1, 1);
-                validateDate(dateToCheck);
-            } catch (PlantException e) {
-                System.out.println("Chyba: " + e.getMessage());
 
-            }
-
-
-        }*/
 
     }
 

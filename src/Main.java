@@ -1,8 +1,7 @@
 import java.io.IOException;
 
+
 import java.time.LocalDate;
-
-
 import java.util.List;
 
 
@@ -18,24 +17,18 @@ public class Main {
 
         try {
 
-            plants.readPlantsFromFile("C:\\Users\\AVATAR\\IdeaProjects\\Projekt1\\PlantsList\\kvetiny.txt", "\t");
-           /* plants.addPlant(new Plant("Lilie Zlatohlavá", "Pěkná",7,LocalDate.of(2021,5,12),LocalDate.of(2021,5,10)));
+            plants.readPlantsFromFile("C:\\Users\\AVATAR\\IdeaProjects\\Projekt1\\PlantsList\\novySeznam.txt", "\t");
+            /*plants.addPlant(new Plant("Lilie Zlatohlavá", "Pěkná",7, LocalDate.of(2021,5,12),LocalDate.of(2021,5,10)));
             plants.writePlantsToFile("C:\\Users\\AVATAR\\IdeaProjects\\Projekt1\\PlantsList\\kvetiny.txt", "\t");
             for (int i = 1; i <= 10; i++) {
                 plants.addPlant(new Plant("Tulipán","Na prodej",14,LocalDate.now(),LocalDate.now()));
 
             }*/
-            plants.remove(3);
-            // Získání rostliny na indexu 1
 
-           /* Plant  vybranaRostlina = getPlantOnIndex(plants, 1);
+            //plants.remove(3);
 
-            // Výpis názvu rostliny
-            if (vybranaRostlina != null) {
-                System.out.println("Rostlina na indexu 1: " + vybranaRostlina.getName());
-            } else {
-                System.out.println("Index je mimo rozsah seznamu.");
-            }*/
+
+
             plants.writePlantsToFile("C:\\Users\\AVATAR\\IdeaProjects\\Projekt1\\PlantsList\\novySeznam.txt", "\t");
 
 
@@ -54,18 +47,6 @@ public class Main {
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
-
-
-
-
-
-
-
-
-
-
-
-
 
 
     }

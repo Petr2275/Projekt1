@@ -18,16 +18,10 @@ public class HousePlants  {
         return new ArrayList<>(plants);
 
     }
-    // Metoda pro získání rostliny ze seznamu na zadaném indexu
-
-   /* public Plant getPlantOnIndex(List<Plant> plants, int index) {
-        if (index >= 0 && index < plants.size()) {
-            return plants.get(index);
-        } else {
-            return null; // Vrátí null, pokud je index mimo rozsah
-        }
-    }*/
-
+    public boolean get(int index) {
+        plants.get(index);
+        return false;
+    }
 
     public void addPlant(Plant plant) {
         plants.add(plant);
@@ -42,14 +36,12 @@ public class HousePlants  {
     }
 
 
-
-
     public void readPlantsFromFile(String filename, String delimiter) throws PlantException {
 
         plants.clear();
         int lineNumber = 0;
         try  { Scanner scanner = new Scanner(
-                new BufferedReader(new FileReader("C:\\Users\\AVATAR\\IdeaProjects\\Projekt1\\PlantsList\\kvetiny.txt")));
+                new BufferedReader(new FileReader("C:\\Users\\AVATAR\\IdeaProjects\\Projekt1\\PlantsList\\novySeznam.txt")));
 
 
             while (scanner.hasNextLine()) {
@@ -61,18 +53,17 @@ public class HousePlants  {
                 String[] parts = oneLine.split(delimiter);
                 Plant newPlant = parsePlants(parts);
                 plants.add(newPlant);
-                //Collections.sort(plants, comparator);
-                //System.out.println("\nInformace před zaléváním");
-                //plants.forEach(c -> System.out.print (c.getWateringInfo()+"), \n"));
 
-                 //Výpis informací před zaléváním
-                //System.out.println(plants.getFirst().getWateringInfo());
-                //System.out.println(plants.getWateringInfo());
+                //Výpis informací před zaléváním
+
+                 plants.forEach(c -> System.out.print (c.getWateringInfo()+"), \n"));
                  //Zaléváme rostlinu
-                //plants.doWateringNow();
+
+                plants.forEach(Plant::doWateringNow);
 
                 // Výpis informací po zalévání
-               // System.out.println(plants.getFirst().getWateringInfo());
+
+                plants.forEach(c -> System.out.print (c.getWateringInfo()+"), \n"));
 
 
 
@@ -83,16 +74,6 @@ public class HousePlants  {
                 System.out.println("\nRostliny podle data poslední zálivky: ");
 
                 plants.forEach(c -> System.out.print(c.getName()+" ("+c.getWatering()+"), \n"));
-
-
-
-
-
-
-
-
-
-
 
             }
             scanner.close();

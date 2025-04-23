@@ -1,5 +1,5 @@
 import java.time.LocalDate;
-import java.util.List;
+
 
 
 public class Plant extends HousePlants implements Comparable<Plant>  {
@@ -98,15 +98,15 @@ public class Plant extends HousePlants implements Comparable<Plant>  {
         this.notes = notes;
     }
 
-    public String getWateringInfo(List<Plant> plant) {
+    public String getWateringInfo() {
         return "Název: " + name +
                 ", Datum poslední zálivky: " + watering +
                 ", Doporučené datum další zálivky: " + nextWatering +
                 "---" + notes;
     }
-    public void doWateringNow(List<Plant> plant) {
+    public void doWateringNow() {
         watering = LocalDate.now();
-        nextWatering = watering.plusDays(3); // Příklad: další zalévání za 3 dny
+        nextWatering = watering.plusDays(14); // Příklad: další zalévání za 7 dny
     }
 
 
