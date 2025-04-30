@@ -9,7 +9,7 @@ import java.util.*;
 
 public class HousePlants  {
 
-    static List<Plant> plants = new ArrayList<>();
+     List<Plant> plants = new ArrayList<>();
 
 
 
@@ -18,30 +18,30 @@ public class HousePlants  {
         return new ArrayList<>(plants);
 
     }
-    public boolean get(int index) {
+    public Integer get(int index) {
         plants.get(index);
-        return false;
+        return index;
     }
 
     public void addPlant(Plant plant) {
         plants.add(plant);
     }
-    public boolean remove(int index) {
+    public Integer remove(int index) {
         plants.remove(index);
-        return false;
+        return index;
     }
-    //kopirovani seznamu
+
     public void replacePlant(List<Plant> newPlants) {
         plants = new ArrayList<>(newPlants);
     }
 
 
-    public void readPlantsFromFile(String filename, String delimiter) throws PlantException {
+    public void readPlantsFromFile(String filename, String delimiter ) throws PlantException {
 
         plants.clear();
         int lineNumber = 0;
         try  { Scanner scanner = new Scanner(
-                new BufferedReader(new FileReader("C:\\Users\\AVATAR\\IdeaProjects\\Projekt1\\PlantsList\\novySeznam.txt")));
+                new BufferedReader(new FileReader("PlantsList\\novySeznam.txt")));
 
 
             while (scanner.hasNextLine()) {
@@ -54,33 +54,14 @@ public class HousePlants  {
                 Plant newPlant = parsePlants(parts);
                 plants.add(newPlant);
 
-                //Výpis informací před zaléváním
-
-                 plants.forEach(c -> System.out.print (c.getWateringInfo()+"), \n"));
-                 //Zaléváme rostlinu
-
-                plants.forEach(Plant::doWateringNow);
-
-                // Výpis informací po zalévání
-
-                plants.forEach(c -> System.out.print (c.getWateringInfo()+"), \n"));
 
 
-
-                plants.sort(null);
-                System.out.print("\nVýchozí řazení rostlin podle nazvu : " + "\n" + plants + "\n");
-
-
-                System.out.println("\nRostliny podle data poslední zálivky: ");
-
-                plants.forEach(c -> System.out.print(c.getName()+" ("+c.getWatering()+"), \n"));
 
             }
-            scanner.close();
 
-        } catch (FileNotFoundException e) {
+        } catch (IOException e) {
+            throw new PlantException("Chyba při čtení souboru: " + filename + "na řádku" + lineNumber + ": " + e.getLocalizedMessage());
 
-            throw new PlantException("Nepodařilo se najít soubor " + filename + ": " + e.getLocalizedMessage());
 
 
         } catch (NumberFormatException e) {
@@ -100,14 +81,14 @@ public class HousePlants  {
     public static Plant parsePlants(String[] parts) {
         String name = parts[0].trim();
         String notes = parts[1].trim();
-        int frequencyOfWatering = Integer.parseInt(parts[2]);
+        int frequencyOfWatering = Integer.parseInt(parts[2].trim());
         LocalDate watering = LocalDate.parse(parts[3].trim());
         LocalDate planted = LocalDate.parse(parts[4].trim());
         return new Plant(name, notes, frequencyOfWatering, watering, planted);
 
 
     }
-    public void writePlantsToFile(String filename, String delimiter) throws PlantException, IOException {
+    public void writePlantsToFile(String filename, String delimiter) throws PlantException {
 
         try (PrintWriter writer = new PrintWriter(new BufferedWriter(new FileWriter(filename)))) {
             for (Plant plant : plants) exportPlants( plant, writer, delimiter);
@@ -143,6 +124,7 @@ public class HousePlants  {
 
         return pourNow;
     }
+
 
 
 

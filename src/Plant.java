@@ -103,10 +103,14 @@ public class Plant extends HousePlants implements Comparable<Plant>  {
                 ", Datum poslední zálivky: " + watering +
                 ", Doporučené datum další zálivky: " + nextWatering +
                 "---" + notes;
+
+
     }
     public void doWateringNow() {
         watering = LocalDate.now();
-        nextWatering = watering.plusDays(14); // Příklad: další zalévání za 7 dny
+        nextWatering = watering.plusDays(frequencyOfWatering);
+
+
     }
 
 

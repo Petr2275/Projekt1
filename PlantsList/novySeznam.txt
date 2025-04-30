@@ -1,13 +1,13 @@
-Fialka 1	Popis fialky - je fialová a hezká	3	2025-04-22	2021-01-01
-Lilie Zlatohlavá	Pěkná	7	2025-04-22	2021-05-10
-Sukulent v koupelně	Nezalévá se	365	2025-04-22	2011-03-01
-Tulipán	Na prodej	14	2025-04-22	2025-04-22
-Tulipán	Na prodej	14	2025-04-22	2025-04-22
-Tulipán	Na prodej	14	2025-04-22	2025-04-22
-Tulipán	Na prodej	14	2025-04-22	2025-04-22
-Tulipán	Na prodej	14	2025-04-22	2025-04-22
-Tulipán	Na prodej	14	2025-04-22	2025-04-22
-Tulipán	Na prodej	14	2025-04-22	2025-04-22
-Tulipán	Na prodej	14	2025-04-22	2025-04-22
-Tulipán	Na prodej	14	2025-04-22	2025-04-22
-Vánoční hvězda bez poznámky		4	2025-04-22	2021-04-01
+Fialka 1	Popis fialky - je fialová a hezká	3	2025-04-30	2021-01-01
+Sukulent v koupelně	Nezalévá se	365	2025-04-30	2011-03-01
+Vánoční hvězda bez poznámky		4	2025-04-30	2021-04-01
+Tulipán	Na prodej	14	2025-04-30	2025-04-29
+Tulipán	Na prodej	14	2025-04-30	2025-04-29
+Tulipán	Na prodej	14	2025-04-30	2025-04-29
+Tulipán	Na prodej	14	2025-04-30	2025-04-29
+Tulipán	Na prodej	14	2025-04-30	2025-04-29
+Tulipán	Na prodej	14	2025-04-30	2025-04-29
+Tulipán	Na prodej	14	2025-04-30	2025-04-29
+Tulipán	Na prodej	14	2025-04-30	2025-04-29
+Tulipán	Na prodej	14	2025-04-30	2025-04-29
+Tulipán	Na prodej	14	2025-04-30	2025-04-29
