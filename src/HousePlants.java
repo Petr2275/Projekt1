@@ -7,10 +7,12 @@ import java.time.LocalDate;
 import java.time.format.DateTimeParseException;
 import java.util.*;
 
-public class HousePlants  {
 
-     List<Plant> plants = new ArrayList<>();
 
+
+public class HousePlants {
+
+    List<Plant> plants = new ArrayList<>();
 
 
 
@@ -18,17 +20,15 @@ public class HousePlants  {
         return new ArrayList<>(plants);
 
     }
-    public Integer get(int index) {
-        plants.get(index);
-        return index;
-    }
+
 
     public void addPlant(Plant plant) {
         plants.add(plant);
     }
-    public Integer remove(int index) {
+
+    public void remove(int index) {
         plants.remove(index);
-        return index;
+
     }
 
     public void replacePlant(List<Plant> newPlants) {
@@ -36,12 +36,13 @@ public class HousePlants  {
     }
 
 
-    public void readPlantsFromFile(String filename, String delimiter ) throws PlantException {
+    public void readPlantsFromFile(String filename, String delimiter) throws PlantException {
 
         plants.clear();
         int lineNumber = 0;
-        try  { Scanner scanner = new Scanner(
-                new BufferedReader(new FileReader("PlantsList\\novySeznam.txt")));
+        try {
+            Scanner scanner = new Scanner(
+                    new BufferedReader(new FileReader("PlantsList\\kvetiny.txt")));
 
 
             while (scanner.hasNextLine()) {
@@ -54,14 +55,10 @@ public class HousePlants  {
                 Plant newPlant = parsePlants(parts);
                 plants.add(newPlant);
 
-
-
-
             }
 
         } catch (IOException e) {
             throw new PlantException("Chyba při čtení souboru: " + filename + "na řádku" + lineNumber + ": " + e.getLocalizedMessage());
-
 
 
         } catch (NumberFormatException e) {
@@ -70,15 +67,12 @@ public class HousePlants  {
         } catch (DateTimeParseException e) {
             throw new PlantException("Špatně zadané datum zálivky,nebo zasazení " + filename + "na řádku" + lineNumber + ": " + e.getLocalizedMessage());
 
-
         }
 
     }
 
 
-
-
-    public static Plant parsePlants(String[] parts) {
+    public static Plant parsePlants(String[] parts) throws PlantException {
         String name = parts[0].trim();
         String notes = parts[1].trim();
         int frequencyOfWatering = Integer.parseInt(parts[2].trim());
@@ -88,10 +82,11 @@ public class HousePlants  {
 
 
     }
+
     public void writePlantsToFile(String filename, String delimiter) throws PlantException {
 
         try (PrintWriter writer = new PrintWriter(new BufferedWriter(new FileWriter(filename)))) {
-            for (Plant plant : plants) exportPlants( plant, writer, delimiter);
+            for (Plant plant : plants) exportPlants(plant, writer, delimiter);
 
         } catch (IOException e) {
             throw new PlantException("Chyba při zápisu do souboru" + filename + ": " + e.getLocalizedMessage());
@@ -99,7 +94,7 @@ public class HousePlants  {
     }
 
 
-    public void exportPlants(Plant plant,PrintWriter writer,String delimiter) {
+    public void exportPlants(Plant plant, PrintWriter writer, String delimiter) {
         String output = plant.getName() + delimiter
                 + plant.getNotes() + delimiter
                 + plant.getFrequencyOfWatering() + delimiter
@@ -111,13 +106,13 @@ public class HousePlants  {
     }
 
 
-    public  List<Plant> getPourNow(List<Plant> plants) {
+    public List<Plant> getPourNow(List<Plant> plants) {
         List<Plant> pourNow = new ArrayList<>();
         LocalDate toDay = LocalDate.now();
 
         for (Plant plant : plants) {
             LocalDate nextPour = plant.getWatering().plusDays(plant.getFrequencyOfWatering());
-            if (toDay.isAfter(nextPour ) || toDay.isEqual(nextPour )) {
+            if (toDay.isAfter(nextPour) || toDay.isEqual(nextPour)) {
                 pourNow.add((Plant) plant);
             }
         }
@@ -126,13 +121,20 @@ public class HousePlants  {
     }
 
 
+    public void get(int index) {
+        if (index >= plants.size()) {
+            throw new IndexOutOfBoundsException();
+
+
+        }
+
+
+
+    }
+
 
 
 }
-
-
-
-
 
 
 

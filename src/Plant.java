@@ -1,42 +1,55 @@
 import java.time.LocalDate;
 
+import java.util.List;
 
 
-public class Plant extends HousePlants implements Comparable<Plant>  {
+public class Plant  extends HousePlants  implements Comparable<Plant> {
     private String name;
     private LocalDate planted;
     private LocalDate watering;
     private String notes;
     private int frequencyOfWatering;
     private LocalDate nextWatering;
+    List<Plant> plants;
 
 
     public Plant(String name, String notes,
-                 int frequencyOfWatering, LocalDate watering, LocalDate planted) {
+                 int frequencyOfWatering, LocalDate watering, LocalDate planted) throws PlantException {
+          if (watering.isBefore(planted)) {
+              throw new PlantException(
+                      "Datum poslední zálivky nemůže býtj starší než datum zasazení rostliny " + " (zadal jsi : " + watering + ")");
+          }
+          if (frequencyOfWatering < 1) {
+             throw new PlantException(
+                    "Frekvence zálivky nesmí mít zápornou hodnotu nižší než 1" +
+                            " (zadal jsi : " + frequencyOfWatering + ")");
+          }
+
         this.name = name;
         this.notes = notes;
         this.frequencyOfWatering = frequencyOfWatering;
         this.watering = watering;
         this.planted = planted;
-
-
     }
 
 
-    public Plant(String notes, LocalDate watering, LocalDate planted) {
+    public Plant(String notes, LocalDate watering, LocalDate planted) throws PlantException
+             {
 
         this.notes = null;
         this.watering = LocalDate.now();
         this.planted = LocalDate.now();
     }
 
-    public Plant(LocalDate planted, LocalDate watering, int frequencyOfWatering, String notes) {
-        this.planted = LocalDate.now();
-        this.watering = LocalDate.now();
-        this.notes = null;
+    public Plant(LocalDate planted, LocalDate watering, int frequencyOfWatering, String notes) throws PlantException
+             {
+        this(notes,watering,planted);
         this.frequencyOfWatering = 7;
+
     }
-    public Plant(String name, LocalDate watering, LocalDate nextWatering, String notes) {
+
+    public Plant(String name, LocalDate watering, LocalDate nextWatering, String notes) throws PlantException
+           {
         this.name = name;
         this.watering = watering;
         this.nextWatering = nextWatering;
@@ -86,8 +99,14 @@ public class Plant extends HousePlants implements Comparable<Plant>  {
         return frequencyOfWatering;
     }
 
-    public void setFrequencyOfWatering(int frequencyOfWatering) {
-        this.frequencyOfWatering = frequencyOfWatering;
+
+    public void setFrequencyOfWatering(int frequencyOfWatering) throws PlantException {
+
+
+
+            this.frequencyOfWatering = frequencyOfWatering;
+
+
     }
 
     public String getNotes() {
@@ -106,17 +125,19 @@ public class Plant extends HousePlants implements Comparable<Plant>  {
 
 
     }
+
     public void doWateringNow() {
         watering = LocalDate.now();
         nextWatering = watering.plusDays(frequencyOfWatering);
 
 
     }
+    public void get(int index) {
+
+        Plant result = plants.get(index);
 
 
-
-
-
+    }
     @Override
     public String toString() {
         return " Plant : " +
