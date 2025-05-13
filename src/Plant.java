@@ -10,7 +10,7 @@ public class Plant  extends HousePlants  implements Comparable<Plant> {
     private String notes;
     private int frequencyOfWatering;
     private LocalDate nextWatering;
-    List<Plant> plants;
+   // List<Plant> plants;
 
 
     public Plant(String name, String notes,
@@ -56,7 +56,7 @@ public class Plant  extends HousePlants  implements Comparable<Plant> {
         this.notes = null;
     }
 
-    public static Plant getWatering(Plant t) {
+    public Plant getWatering(Plant t) {
         return null;
     }
 
@@ -101,10 +101,7 @@ public class Plant  extends HousePlants  implements Comparable<Plant> {
 
 
     public void setFrequencyOfWatering(int frequencyOfWatering) throws PlantException {
-
-
-
-            this.frequencyOfWatering = frequencyOfWatering;
+        this.frequencyOfWatering = frequencyOfWatering;
 
 
     }
@@ -155,6 +152,10 @@ public class Plant  extends HousePlants  implements Comparable<Plant> {
 
 
     }
+    public boolean needsWatering() {
+        return LocalDate.now().isAfter(watering.plusDays(frequencyOfWatering));
+    }
+
 
 
 

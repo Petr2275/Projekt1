@@ -12,7 +12,15 @@ import java.util.*;
 
 public class HousePlants {
 
-    List<Plant> plants = new ArrayList<>();
+
+    List<Plant> plants;
+
+    //List<Plant> plants = new ArrayList<>();
+
+
+    public HousePlants() {
+        this.plants = new ArrayList<>();
+    }
 
 
 
@@ -104,21 +112,16 @@ public class HousePlants {
 
 
     }
-
-
-    public List<Plant> getPourNow(List<Plant> plants) {
-        List<Plant> pourNow = new ArrayList<>();
-        LocalDate toDay = LocalDate.now();
-
+    public List<String> getPlantsToWater() {
+        List<String> plantsToWater = new ArrayList<>();
         for (Plant plant : plants) {
-            LocalDate nextPour = plant.getWatering().plusDays(plant.getFrequencyOfWatering());
-            if (toDay.isAfter(nextPour) || toDay.isEqual(nextPour)) {
-                pourNow.add((Plant) plant);
+            if (plant.needsWatering()) {
+                plantsToWater.add(plant.getName());
             }
         }
-
-        return pourNow;
+        return plantsToWater;
     }
+
 
 
     public void get(int index) {
