@@ -15,7 +15,7 @@ public class HousePlants {
 
     List<Plant> plants;
 
-    //List<Plant> plants = new ArrayList<>();
+
 
 
     public HousePlants() {

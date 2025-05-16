@@ -3,7 +3,7 @@
 
 
 import java.time.LocalDate;
-import java.util.ArrayList;
+
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
@@ -13,15 +13,7 @@ import java.util.List;
 public class Main {
     public static void main(String[] args) {
 
-
-
         HousePlants plants = new HousePlants();
-
-
-
-
-
-
 
         try {
 
@@ -35,12 +27,12 @@ public class Main {
             }
             plants.writePlantsToFile("PlantsList\\kvetiny.txt", "\t");
 
+            //odebrani kvetiny na treti pozici
+            plants.remove(2);
+
             List<Plant> plant = plants.getPlant();
 
-
             //razeni rostlin podle ruznych kriterii
-
-
             System.out.println("\n" + "Výchozí řazení rostlin podle nazvu : " );
             Collections.sort(plant);
             plant.forEach( c -> System.out.print( c.getName()+ ", \n" ));
@@ -49,13 +41,9 @@ public class Main {
             plant.sort(Comparator.comparing(Plant::getWatering));
             plant.forEach(c -> System.out.print( c.getName()+" ("+c.getWatering()+"), \n"));
 
-            //odebrani kvetiny na treti pozici
-            plants.remove(2);
-
             //informace o zalivce pro vsechny kvetiny ze seznamu
             System.out.println("\nInformace před zaleváním : ");
 
-            //plant.forEach(c -> System.out.print (c.getWateringInfo()+"), \n"));
             plant.forEach(System.out::print);
 
             //kvetiny ktere je treba hned zalit
@@ -70,21 +58,14 @@ public class Main {
             plant.forEach(c -> System.out.print (c.getWateringInfo()+"), \n"));
             //konec info
 
-
-
             //vypis kvetiny na zadanem indexu
-
             System.out.println("\nKvětina na indexu : ");
-
             System.out.println(plant.get(1));
 
-
-
-
-
-
-           plants.writePlantsToFile("PlantsList\\novySeznam.txt", "\t");
-
+            //ulozeni kvetin do noveho souboru
+            plants.writePlantsToFile("PlantsList\\novySeznam.txt", "\t");
+            //nacteni souboru
+            //plants.readPlantsFromFile("PlantsList\\novySeznam.txt", "\t");
 
 
         } catch (IndexOutOfBoundsException e) {

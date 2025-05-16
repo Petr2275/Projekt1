@@ -1,6 +1,6 @@
 import java.time.LocalDate;
 
-import java.util.List;
+
 
 
 public class Plant  extends HousePlants  implements Comparable<Plant> {
@@ -10,7 +10,7 @@ public class Plant  extends HousePlants  implements Comparable<Plant> {
     private String notes;
     private int frequencyOfWatering;
     private LocalDate nextWatering;
-   // List<Plant> plants;
+
 
 
     public Plant(String name, String notes,
@@ -33,27 +33,23 @@ public class Plant  extends HousePlants  implements Comparable<Plant> {
     }
 
 
-    public Plant(String notes, LocalDate watering, LocalDate planted) throws PlantException
-             {
-
-        this.notes = null;
-        this.watering = LocalDate.now();
-        this.planted = LocalDate.now();
-    }
-
-    public Plant(LocalDate planted, LocalDate watering, int frequencyOfWatering, String notes) throws PlantException
-             {
-        this(notes,watering,planted);
-        this.frequencyOfWatering = 7;
+    public Plant() throws PlantException {
+        this("", "",0, LocalDate.now(), LocalDate.now() );
 
     }
 
-    public Plant(String name, LocalDate watering, LocalDate nextWatering, String notes) throws PlantException
+    public Plant(String name) throws PlantException {
+        this(name,"",7,LocalDate.now(), LocalDate.now());
+
+
+    }
+    //konstruktor pro vypsani doporucene dalsi zalivky
+    public Plant(String name, LocalDate watering, LocalDate nextWatering , String notes)
            {
         this.name = name;
         this.watering = watering;
         this.nextWatering = nextWatering;
-        this.notes = null;
+        this.notes = notes;
     }
 
     public Plant getWatering(Plant t) {
@@ -100,7 +96,7 @@ public class Plant  extends HousePlants  implements Comparable<Plant> {
     }
 
 
-    public void setFrequencyOfWatering(int frequencyOfWatering) throws PlantException {
+    public void setFrequencyOfWatering(int frequencyOfWatering) {
         this.frequencyOfWatering = frequencyOfWatering;
 
 
